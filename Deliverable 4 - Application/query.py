@@ -15,6 +15,17 @@ def minStockByState(state, minAmount, date):
             stocks.append( (r[0], r[4], str(r[2])) )
     print stocks
 
+def findMaxMinForIndustry(industry):
+	cursor = conn.cursor()
+	sql = """
+		SELECT  min(p.open), max(p.open) from prices as p
+		JOIN securities s on p.symbol = s.ticker
+		where s.gicssector = '%s'
+	"""
+	cursor.execute(sql %(industry))
+	records = cursor.fetchone()
+	return records
+
 
 if __name__ == '__main__':
     minStockByState("CA", "20", '2016-01-06')
