@@ -9,7 +9,7 @@ HOST = '0.0.0.0'
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/')
 def main():
     return render_template("main.html")
 
@@ -28,6 +28,8 @@ def querypage():
     except:
         try:
             print(result['submit2'])
+            submitVals = list(result.values())
+            
         except:
             try:
                 print(result['submit3'])

@@ -5,7 +5,6 @@ connection_string = "host='localhost' dbname='stocks' user='stocks' password='st
 conn = psycopg2.connect(connection_string)
 
 def minStockByState(state, minAmount, date):
-    print("ENTERED")
     cursor = conn.cursor()
     cursor.execute("SELECT DISTINCT prices.symbol, prices.date_, prices.close, securities.Address, securities.Security FROM securities, prices WHERE securities.Ticker = prices.symbol;")
     records = cursor.fetchall()
@@ -78,6 +77,7 @@ def CandleStick(ticker):
 	plt.show()
 
 if __name__ == '__main__':
-    print minStockByState("CA", "100", '2016-01-06')
+    # print minStockByState("CA", "100", '2016-01-06')
     # print(highestStockPriceByDate('2016-01-07'))
     # print(investmentInfo('AAPL'))
+    print("ran query")
