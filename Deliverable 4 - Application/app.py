@@ -9,7 +9,7 @@ HOST = '0.0.0.0'
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def main():
     return render_template("main.html")
 

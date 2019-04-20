@@ -5,13 +5,14 @@ connection_string = "host='localhost' dbname='stocks' user='stocks' password='st
 conn = psycopg2.connect(connection_string)
 
 def minStockByState(state, minAmount, date):
+    print("ENTERED")
     cursor = conn.cursor()
     cursor.execute("SELECT DISTINCT prices.symbol, prices.date_, prices.close, securities.Address, securities.Security FROM securities, prices WHERE securities.Ticker = prices.symbol;")
     records = cursor.fetchall()
     stocks=[]
 
     for r in records:
-        if state.lower() in r[3].lower() and str(r[1]) == date and str(r[2]) >= minAmount:
+        if state.lower() in r[3].lower() and str(r[1]) == date and float(r[2]) >= float(minAmount):
             stocks.append( (r[0], r[4], str(r[2])) )
     return stocks
 
