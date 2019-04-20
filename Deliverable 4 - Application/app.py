@@ -30,7 +30,6 @@ def querypage():
             print(result['submit2'])
             submitVals = list(result.values())
             record = findMaxMinForIndustry(submitVals[0][0])
-
             return render_template("secondquery.html", result = record)
         except:
             try:
@@ -41,9 +40,15 @@ def querypage():
             except:
                 try:
                     print(result['submit4'])
+                    submitVals = list(result.values())
+                    record = investmentInfo(submitVals[0][0], submitVals[1][0])
+                    return render_template("fourthquery.html", type= submitVals[0][0], result = record)
                 except:
                     try: 
                         print(result['submit5'])
+                        submitVals = list(result.values())
+                        CandleStick(submitVals[0][0])
+                        return render_template("fifthquery.html", name=submitVals[0][0])
                     except:
                         raise
 

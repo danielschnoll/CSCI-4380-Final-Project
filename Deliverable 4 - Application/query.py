@@ -1,8 +1,9 @@
 import psycopg2
 import unittest
 import matplotlib
-from mpl_finance import candlestick_ohlc
+matplotlib.use("TkAgg")
 from matplotlib import pyplot as plt
+from mpl_finance import candlestick_ohlc
 from matplotlib import ticker as ticker
 import datetime as datetime
 from matplotlib import dates as mdates
@@ -81,7 +82,11 @@ def investmentInfo(financeInfo, stockTicker):
     """
     cursor.execute(sql %(val, stockTicker))
     records = cursor.fetchone()
-    return records
+    if records == None:
+        return None
+        
+    record = float(records[0])
+    return record
 
 '''
 WORKS WITH APC, CCL
@@ -107,10 +112,10 @@ def CandleStick(ticker):
 	#ax.xaxis.set_minor_locator(alldays)
 	#ax.xaxis.set_major_formatter(weekFormatter)
 	candlestick_ohlc(ax, zip(mdates.date2num(dates),_open, _high, _low, _close), width=0.60)
-	plt.show()
+	plt.savefig("static/images/plot.png")
 
 if __name__ == '__main__':
     # print minStockByState("CA", "100", '2016-01-06')
     # print(highestStockPriceByDate('2016-01-07'))
-    # print(investmentInfo('AAPL'))
+    print(CandleStick('AAPL'))
     print("ran query")
