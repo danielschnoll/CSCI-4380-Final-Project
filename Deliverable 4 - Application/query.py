@@ -50,7 +50,31 @@ def investmentInfo(stockTicker):
 	cursor.execute(sql %(stockTicker))
 	records = cursor.fetchone()
 	return records
-
+'''
+WORKS WITH APC, CCL
+'''
+def CandleStick(ticker):
+	cursor = conn.cursor()
+	sql = """ SELECT * FROM prices where symbol = '%s' """
+	cursor.execute(sql % (ticker))
+	records = cursor.fetchall()
+	dates = []
+	_open = []
+	_high = []
+	_low = []
+	_close = []
+	for i in records:
+		dates.append(i[0])
+		_open.append(i[2])
+		_high.append(i[5])
+		_low.append(i[4])
+		_close.append(i[3])
+	#print(records)
+	fig, ax = plt.subplots()
+	#ax.xaxis.set_minor_locator(alldays)
+	#ax.xaxis.set_major_formatter(weekFormatter)
+	candlestick_ohlc(ax, zip(mdates.date2num(dates),_open, _high, _low, _close), width=0.60)
+	plt.show()
 
 if __name__ == '__main__':
     # minStockByState("CA", "20", '2016-01-06')
