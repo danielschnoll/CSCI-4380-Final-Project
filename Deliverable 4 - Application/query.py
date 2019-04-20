@@ -94,6 +94,7 @@ def CandleStick(ticker):
 
 if __name__ == '__main__':
     # print minStockByState("CA", "100", '2016-01-06')
-    print(highestStockPriceByDate('2016-01-07'))
+    # print(highestStockPriceByDate('2016-01-07'))
     # print(investmentInfo('AAPL'))
+    print (CandleStick("AAPL"))
     print("ran query")
