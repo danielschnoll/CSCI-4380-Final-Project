@@ -1,5 +1,10 @@
 import psycopg2
 import unittest
+from mpl_finance import candlestick_ohlc
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import datetime as datetime
+import matplotlib.dates as mdates
 
 connection_string = "host='localhost' dbname='stocks' user='stocks' password='stocks'"
 conn = psycopg2.connect(connection_string)
@@ -80,4 +85,5 @@ if __name__ == '__main__':
     # print minStockByState("CA", "100", '2016-01-06')
     # print(highestStockPriceByDate('2016-01-07'))
     # print(investmentInfo('AAPL'))
+    print CandleStick('AAPL')
     print("ran query")
