@@ -47,15 +47,20 @@ def highestStockPriceByDate(date):
     return records+allRec
 
 def findMaxMinForIndustry(industry):
-	cursor = conn.cursor()
-	sql = """
-		SELECT  min(p.open), max(p.open) from prices as p
-		JOIN securities s on p.symbol = s.ticker
-		where s.gicssector = '%s'
+    cursor = conn.cursor()
+    sql = """
+	    SELECT  min(p.open), max(p.open) from prices as p
+	    JOIN securities s on p.symbol = s.ticker
+	    where s.gicssector = '%s'
 	"""
-	cursor.execute(sql %(industry))
-	records = cursor.fetchone()
-	return records
+    cursor.execute(sql %(industry))
+    records = cursor.fetchone()
+    recordsRet = []
+    low = "Low: %f" % float(records[0])
+    high = "High: %f" % float(records[1])
+    recordsRet.append(low)
+    recordsRet.append(high)
+    return recordsRet
 
 def investmentInfo(stockTicker):
 	cursor = conn.cursor()
@@ -97,5 +102,4 @@ if __name__ == '__main__':
     # print minStockByState("CA", "100", '2016-01-06')
     # print(highestStockPriceByDate('2016-01-07'))
     # print(investmentInfo('AAPL'))
-    print (CandleStick("AAPL"))
     print("ran query")

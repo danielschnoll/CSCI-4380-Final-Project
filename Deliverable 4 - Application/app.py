@@ -29,6 +29,9 @@ def querypage():
         try:
             print(result['submit2'])
             submitVals = list(result.values())
+            record = findMaxMinForIndustry(submitVals[0][0])
+
+            return render_template("secondquery.html", result = record)
         except:
             try:
                 print(result['submit3'])

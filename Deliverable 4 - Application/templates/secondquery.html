@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Query
+        </title>
+    </head>
+    <body>
+        {% if not result %}
+        <p>
+            No Data for Selected Parameters
+        </p>
+        {% else %}
+        <table border = 1>
+            {% for x in result%}
+            <tr>
+                <td> {{ x }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </body>
+    <form action="/">
+        <input type="submit" value="Go Home">
+    </form>
+</html>
