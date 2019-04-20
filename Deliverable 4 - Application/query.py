@@ -40,7 +40,19 @@ def findMaxMinForIndustry(industry):
 	records = cursor.fetchone()
 	return records
 
+def investmentInfo(stockTicker):
+	cursor = conn.cursor()
+	sql = """
+		SELECT fundamentals.capital_expenditure, fundamentals.common_stock, fundamentals.current_ratio, fundamentals.earnings_before_tax 
+		FROM fundamentals
+		WHERE fundamentals.symbol = '%s'
+	"""
+	cursor.execute(sql %(stockTicker))
+	records = cursor.fetchone()
+	return records
+
 
 if __name__ == '__main__':
     # minStockByState("CA", "20", '2016-01-06')
-    print(highestStockPriceByDate('2016-01-07'))
+    # print(highestStockPriceByDate('2016-01-07'))
+    print(investmentInfo('AAPL'))
