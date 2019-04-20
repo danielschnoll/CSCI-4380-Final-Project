@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import matplotlib
 import os
 
 PORT = 5000
@@ -8,7 +9,6 @@ HOST = '0.0.0.0'
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-CORS(app)
 
 if os.environ.get("POSTGRES_URI") is None:
 	print("ERROR: Environment Variable not set..")
@@ -20,7 +20,12 @@ db.init_app(app)
 
 @app.route('/')
 def main():
-    return "Hello"
+    return render_template("main.html")
+
+@app.route('/query', methods=['POST'])
+def querypage():
+    result = request.form
+    return render_template("query.html", result = result)
 
 if __name__ == '__main__':
 	print("running Stock Ticker webserver..")
