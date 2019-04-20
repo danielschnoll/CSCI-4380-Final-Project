@@ -9,5 +9,30 @@
         <form action="/query" method="POST">
             1. Find Min Stock Price - <input type="text" name = "price" value = "Price" onfocus="this.value=''"> by Location - <input type="text" name="location" value= "Location" onfocus="this.value=''"> on Date - <input type="date" name="date"> <input type="submit" name="submit1">
         </form>
+
+        <form action="/query" method="POST">
+            2. Find Min Stock Price - <input type="text" name = "MinPrice" value = "Min Price" onfocus="this.value=''"> and 
+            Max Stock Price - <input type="text" name = "MaxPrice" value = "Max Price" onfocus="this.value=''">
+            for Industry - 
+            <select name="Industry">
+                <option value="HealthCare">Health Care</option>
+                <option value="Financials">Financials</option>
+                <option value="InformationTechnology">Information Technology</option>
+                <option value="RealEstate">Real Estate</option>
+                <option value="ConsumerStaples">Consumer Staples</option>
+                <option value="Energy">Energy</option>
+                <option value="Materials">Materials</option>
+                <option value="Industrials">Industrials</option>
+                <option value="Utilities">Utilities</option>
+                <option value="ConsumerDiscretionary">Consumer Discretionary</option>
+                <option value="TelecommunicationsServices">Telecommunications Services</option>
+              </select>
+            <input type="submit" name="submit2">
+        </form>
+
+        <form action="/query" method="POST">
+            3. Find Highest Stock Price on Date - <input type="date" name="date"> <input type="submit" name="submit3">
+        </form>
+
     </body>
 </html>
