@@ -1,32 +1,44 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-import matplotlib
+from werkzeug.datastructures import ImmutableMultiDict
+from query import *
 import os
 
 PORT = 5000
 HOST = '0.0.0.0'
 
 app = Flask(__name__)
-"""
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_URI")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-if os.environ.get("POSTGRES_URI") is None:
-	print("ERROR: Environment Variable not set..")
-	exit(0)
-
-db = SQLAlchemy(app)
-db.init_app(app)
-"""
 
 @app.route('/')
 def main():
     return render_template("main.html")
 
+# Pull information from the request form, execue query based on
+# which submit button was entered
 @app.route('/query', methods=['POST'])
 def querypage():
     result = request.form
-    return render_template("query.html", result = result)
+    result = result.to_dict(flat=False)
+    try:
+        print(result['submit1'])
+        submitVals = list(result.values())
+        stocks = minStockByState(submitVals[1][0], submitVals[0][0], submitVals[2][0])
+        print(stocks)
+        return render_template("query.html", result = stocks)
+    except:
+        try:
+            print(result['submit2'])
+        except:
+            try:
+                print(result['submit3'])
+            except:
+                try:
+                    print(result['submit4'])
+                except:
+                    try: 
+                        print(result['submit5'])
+                    except:
+                        raise
 
 if __name__ == '__main__':
 	print("running Stock Ticker webserver..")
