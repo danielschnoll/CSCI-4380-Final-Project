@@ -29,10 +29,12 @@ def querypage():
         try:
             print(result['submit2'])
             submitVals = list(result.values())
-            
         except:
             try:
                 print(result['submit3'])
+                submitVals = list(result.values())
+                record = highestStockPriceByDate(submitVals[0][0])
+                return render_template("query.html", result=record)
             except:
                 try:
                     print(result['submit4'])

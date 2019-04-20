@@ -6,6 +6,11 @@
         </title>
     </head>
     <body>
+        {% if not result %}
+        <p>
+            No Data for Selected Parameters
+        </p>
+        {% else %}
         <table border = 1>
             {% for a, b, c in result%}
                <tr>
@@ -15,6 +20,7 @@
                </tr>
             {% endfor %}
          </table>
+         {% endif %}
     </body>
     <form action="/">
         <input type="submit" value="Go Home">
