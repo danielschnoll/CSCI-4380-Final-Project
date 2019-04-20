@@ -32,7 +32,18 @@ def highestStockPriceByDate(date):
     """.format(date)
     cursor.execute(sql)
     records = cursor.fetchall()
-    return records
+
+    secondsql = """
+        SELECT DISTINCT securities.Ticker, securities.Security, prices.high
+        FROM securities, prices 
+        WHERE prices.high = 
+            (select min(high) from prices 
+            WHERE prices.date_ = '{}')
+        AND securities.Ticker = prices.symbol;
+    """.format(date)
+    cursor.execute(secondsql)
+    allRec = cursor.fetchall()
+    return records+allRec
 
 def findMaxMinForIndustry(industry):
 	cursor = conn.cursor()
@@ -83,7 +94,6 @@ def CandleStick(ticker):
 
 if __name__ == '__main__':
     # print minStockByState("CA", "100", '2016-01-06')
-    # print(highestStockPriceByDate('2016-01-07'))
+    print(highestStockPriceByDate('2016-01-07'))
     # print(investmentInfo('AAPL'))
-    print CandleStick('AAPL')
     print("ran query")
