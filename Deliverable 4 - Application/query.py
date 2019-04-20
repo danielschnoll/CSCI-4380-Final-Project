@@ -57,16 +57,27 @@ def findMaxMinForIndustry(industry):
 	records = cursor.fetchone()
 	return records
 
-def investmentInfo(stockTicker):
-	cursor = conn.cursor()
-	sql = """
-		SELECT fundamentals.capital_expenditure, fundamentals.common_stock, fundamentals.current_ratio, fundamentals.earnings_before_tax 
-		FROM fundamentals
-		WHERE fundamentals.symbol = '%s'
-	"""
-	cursor.execute(sql %(stockTicker))
-	records = cursor.fetchone()
-	return records
+def investmentInfo(financeInfo, stockTicker):
+    cursor = conn.cursor()
+    val = "earnings_before_tax"
+    if(financeInfo == "Capital Expenditure"):
+        val = "capital_expenditure"
+    elif(financeInfo == "Common Stock"):
+        val = "common_stock"
+    elif(financeInfo == "Current Ratio"):
+        val = "current_ratio"
+    else:
+        val = "earnings_before_tax"
+    
+    sql = """
+        SELECT fundamentals.%s
+        FROM fundamentals
+        WHERE fundamentals.symbol = '%s';
+    """
+    cursor.execute(sql %(val, stockTicker))
+    records = cursor.fetchone()
+    return records
+
 '''
 WORKS WITH APC, CCL
 '''
@@ -96,6 +107,6 @@ def CandleStick(ticker):
 if __name__ == '__main__':
     # print minStockByState("CA", "100", '2016-01-06')
     # print(highestStockPriceByDate('2016-01-07'))
-    # print(investmentInfo('AAPL'))
-    print (CandleStick("AAPL"))
+    print(investmentInfo("Common Stock", "AAPL"))
+    # print (CandleStick("AAPL"))
     print("ran query")
