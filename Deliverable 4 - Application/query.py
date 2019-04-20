@@ -62,16 +62,27 @@ def findMaxMinForIndustry(industry):
     recordsRet.append(high)
     return recordsRet
 
-def investmentInfo(stockTicker):
-	cursor = conn.cursor()
-	sql = """
-		SELECT fundamentals.capital_expenditure, fundamentals.common_stock, fundamentals.current_ratio, fundamentals.earnings_before_tax 
-		FROM fundamentals
-		WHERE fundamentals.symbol = '%s'
-	"""
-	cursor.execute(sql %(stockTicker))
-	records = cursor.fetchone()
-	return records
+def investmentInfo(financeInfo, stockTicker):
+    cursor = conn.cursor()
+    val = "earnings_before_tax"
+    if(financeInfo == "Capital Expenditure"):
+        val = "capital_expenditure"
+    elif(financeInfo == "Common Stock"):
+        val = "common_stock"
+    elif(financeInfo == "Current Ratio"):
+        val = "current_ratio"
+    else:
+        val = "earnings_before_tax"
+    
+    sql = """
+        SELECT fundamentals.%s
+        FROM fundamentals
+        WHERE fundamentals.symbol = '%s';
+    """
+    cursor.execute(sql %(val, stockTicker))
+    records = cursor.fetchone()
+    return records
+
 '''
 WORKS WITH APC, CCL
 '''
