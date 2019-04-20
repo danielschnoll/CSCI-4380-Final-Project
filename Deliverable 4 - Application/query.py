@@ -11,7 +11,7 @@ def minStockByState(state, minAmount, date):
     stocks=[]
 
     for r in records:
-        if state.lower() in r[3].lower() and str(r[1]) == date and str(r[2]) >= minAmount:
+        if state.lower() in r[3].lower() and str(r[1]) == date and float(r[2]) >= float(minAmount):
             stocks.append( (r[0], r[4], str(r[2])) )
     return stocks
 
@@ -77,6 +77,6 @@ def CandleStick(ticker):
 	plt.show()
 
 if __name__ == '__main__':
-    # minStockByState("CA", "20", '2016-01-06')
+    print minStockByState("CA", "100", '2016-01-06')
     # print(highestStockPriceByDate('2016-01-07'))
-    print(investmentInfo('AAPL'))
+    # print(investmentInfo('AAPL'))
