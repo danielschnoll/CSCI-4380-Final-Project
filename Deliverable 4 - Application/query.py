@@ -78,6 +78,6 @@ def CandleStick(ticker):
 	plt.show()
 
 if __name__ == '__main__':
-    # minStockByState("CA", "20", '2016-01-06')
+    print minStockByState("CA", "100", '2016-01-06')
     # print(highestStockPriceByDate('2016-01-07'))
-    print(investmentInfo('AAPL'))
+    # print(investmentInfo('AAPL'))
