@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="jumbotron bg-danger text-white">
-            <h1 class="text-center">Stock Ticker Query Results</h1>
+            <h1 class="text-center">Stock Ticker Query #{{ btn }} Results</h1>
         </div>
         <div class="container">
             {% if not result %}
@@ -16,15 +16,22 @@
                 No Data for Selected Parameters
             </p>
             {% else %}
+            <h1 class="text-center">
+                {{ name }}
+            </h1>
             <table class="table table-border">
+                <tr class="thead-light">
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
                 <tr>
                     <td> {{ type }} </td>
-                    <td> {{ result }} </td>
+                    <td> ${{ result }} </td>
                 </tr>
             </table>
             {% endif %}
             <form action="/">
-                <input type="submit" value="Go Home">
+                <input type="submit" class="btn btn-success mb-2" value="Go Home">
             </form>
         </div>
     </body>

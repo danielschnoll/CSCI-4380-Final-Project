@@ -23,31 +23,31 @@ def querypage():
         print(result['submit1'])
         submitVals = list(result.values())
         stocks = minStockByState(submitVals[1][0], submitVals[0][0], submitVals[2][0])
-        return render_template("query.html", result = stocks)
+        return render_template("query.html", result = stocks, btn="1")
     except:
         try:
             print(result['submit2'])
             submitVals = list(result.values())
             record = findMaxMinForIndustry(submitVals[0][0])
-            return render_template("secondquery.html", result = record)
+            return render_template("secondquery.html", result = record, btn="2")
         except:
             try:
                 print(result['submit3'])
                 submitVals = list(result.values())
                 record = highestStockPriceByDate(submitVals[0][0])
-                return render_template("query.html", result=record)
+                return render_template("query.html", result=record, btn="3")
             except:
                 try:
                     print(result['submit4'])
                     submitVals = list(result.values())
                     record = investmentInfo(submitVals[0][0], submitVals[1][0])
-                    return render_template("fourthquery.html", type= submitVals[0][0], result = record)
+                    return render_template("fourthquery.html", type= submitVals[0][0], name=submitVals[1][0], result = record, btn="4")
                 except:
                     try: 
                         print(result['submit5'])
                         submitVals = list(result.values())
                         CandleStick(submitVals[0][0])
-                        return render_template("fifthquery.html", name=submitVals[0][0])
+                        return render_template("fifthquery.html", name=submitVals[0][0], btn="5")
                     except:
                         raise
 
