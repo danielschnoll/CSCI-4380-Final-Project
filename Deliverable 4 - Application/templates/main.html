@@ -4,49 +4,56 @@
         <title>
             Stock Ticker App
         </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <form action="/query" method="POST">
-            1. Find Min Stock Price - <input type="text" name = "price" value = "Price" onfocus="this.value=''"> by Location - <input type="text" name="location" value= "Location" onfocus="this.value=''"> on Date - <input type="date" name="date"> <input type="submit" name="submit1">
-        </form>
-
-        <form action="/query" method="POST">
-            2. Find Min and Max Stock Price
-            for Industry - 
-            <select name="Industry">
-                <option value="Health Care">Health Care</option>
-                <option value="Financials">Financials</option>
-                <option value="Information Technology">Information Technology</option>
-                <option value="Real Estate">Real Estate</option>
-                <option value="Consumer Staples">Consumer Staples</option>
-                <option value="Energy">Energy</option>
-                <option value="Materials">Materials</option>
-                <option value="Industrials">Industrials</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Consumer Discretionary">Consumer Discretionary</option>
-                <option value="Telecommunications Services">Telecommunications Services</option>
-              </select>
-            <input type="submit" name="submit2">
-        </form>
-
-        <form action="/query" method="POST">
-            3. Find Highest and Lowest Stock Price on Date - <input type="date" name="date"> <input type="submit" name="submit3">
-        </form>
-
-        <form action="/query" method="POST">
-            4. Financial Information - 
-            <select name="Industry">
-                <option value="Capital Expenditure">Capital Expenditure</option>
-                <option value="Common Stock">Common Stock</option>
-                <option value="Current Ratio">Current Ratio</option>
-                <option value="Earnings Before Tax">Earnings Before Tax</option>
-              </select>
-            for Stock - <input type="stock" name = "stock" value = "stock" onfocus="this.value=''"> <input type="submit" name="submit4">
-        </form>
-
-        <form action="/query" method="POST">
-            5. Candlestick chart for Stock -
-            <input type="stock" name = "stock" value = "stock" onfocus="this.value=''"> <input type="submit" name="submit5">
-        </form>
+        <div class="jumbotron bg-danger text-white">
+            <h1 class="text-center">Stock Ticker Querying</h1>
+            <h2 class="text-center">CSCI 4380 (Database Systems)</h2>
+        </div>
+        <div class="container">
+            <form action="/query" method="POST">
+                1. Find Min Stock Price - <input type="text" name = "price" value = "Price" onfocus="this.value=''"> by Location - <input type="text" name="location" value= "Location" onfocus="this.value=''"> on Date - <input type="date" name="date"> <input type="submit" class="btn btn-primary mb-2" name="submit1">
+            </form>
+    
+            <form action="/query" method="POST">
+                2. Find Min and Max Stock Price
+                for Industry - 
+                <select name="Industry">
+                    <option value="Health Care">Health Care</option>
+                    <option value="Financials">Financials</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Consumer Staples">Consumer Staples</option>
+                    <option value="Energy">Energy</option>
+                    <option value="Materials">Materials</option>
+                    <option value="Industrials">Industrials</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Consumer Discretionary">Consumer Discretionary</option>
+                    <option value="Telecommunications Services">Telecommunications Services</option>
+                </select>
+                <input type="submit" class="btn btn-danger mb-2" name="submit2">
+            </form>
+    
+            <form action="/query" method="POST">
+                3. Find Highest and Lowest Stock Price on Date - <input type="date" name="date"> <input type="submit" class="btn btn-warning mb-2" name="submit3">
+            </form>
+    
+            <form action="/query" method="POST">
+                4. Financial Information - 
+                <select name="Industry">
+                    <option value="Capital Expenditure">Capital Expenditure</option>
+                    <option value="Common Stock">Common Stock</option>
+                    <option value="Current Ratio">Current Ratio</option>
+                    <option value="Earnings Before Tax">Earnings Before Tax</option>
+                    </select>
+                for Stock - <input type="stock" name = "stock" value = "stock" onfocus="this.value=''"> <input type="submit" class="btn btn-success mb-2"name="submit4">
+            </form>
+    
+            <form action="/query" method="POST">
+                5. Candlestick chart for Stock -
+                <input type="stock" name = "stock" value = "stock" onfocus="this.value=''"> <input type="submit" class="btn btn-info mb-2" name="submit5">
+            </form>
+        </div>
     </body>
 </html>

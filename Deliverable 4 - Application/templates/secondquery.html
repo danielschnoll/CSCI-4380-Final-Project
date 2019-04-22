@@ -2,25 +2,31 @@
 <html>
     <head>
         <title>
-            Query
+            Query Page
         </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        {% if not result %}
-        <p>
-            No Data for Selected Parameters
-        </p>
-        {% else %}
-        <table border = 1>
-            {% for x in result%}
-            <tr>
-                <td> {{ x }} </td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% endif %}
+        <div class="jumbotron bg-danger text-white">
+            <h1 class="text-center">Stock Ticker Query Results</h1>
+        </div>
+        <div class="container">
+            {% if not result %}
+            <p>
+                No Data for Selected Parameters
+            </p>
+            {% else %}
+            <table class="table table-bordered">
+                {% for x in result%}
+                <tr>
+                    <td> {{ x }} </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            <form action="/">
+                <input type="submit" value="Go Home">
+            </form>
+        </div>
     </body>
-    <form action="/">
-        <input type="submit" value="Go Home">
-    </form>
 </html>

@@ -23,7 +23,6 @@ def querypage():
         print(result['submit1'])
         submitVals = list(result.values())
         stocks = minStockByState(submitVals[1][0], submitVals[0][0], submitVals[2][0])
-        print(stocks)
         return render_template("query.html", result = stocks)
     except:
         try:
